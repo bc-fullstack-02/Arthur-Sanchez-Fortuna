@@ -1,11 +1,12 @@
+import {Login} from "./Pages/Login";
 import "./index.css";
 
 function App() {
   return (
     <div className="App">
-      <h1 className="text-3xl font-bold underline text-sky-600">Hello world!</h1>
+      <Login/>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
