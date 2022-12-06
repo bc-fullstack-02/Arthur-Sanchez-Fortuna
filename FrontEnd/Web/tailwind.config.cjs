@@ -8,6 +8,10 @@ module.exports = {
   content: ["./src/**/*.{html,js,jsx,tsx}"],
   /*Fazer rodar, minuto 48:50 Aula 4*/
   theme: {
+    // colocar a fonte google
+    fontFamily: {
+      sans:["inter", "sans-serif"],
+    },
     extend: {}
   },
   plugins: [],
