@@ -1,17 +1,19 @@
-import { Slot } from "@radix-ui/react-slot";
+import { Slot } from "@radix-ui/react-slot"
+import { clsx } from "clsx";
 import {ReactNode} from 'react'
 
+/*Minuto 1:13:50 Aula 4 */
 export interface HeadingProps {
     size?: "sm" | "md" | "lg";
     children: ReactNode;
     asChild?: boolean;
-    classNames?: string;
+    className?: string;
 }
+/*Minuto 1:18:40 Aula 4 */
+export function Heading({size="md", children, asChild, className }: HeadingProps) {
+    const Comp = asChild ? Slot : "h2";
 
-export function Heading() {
-    return(
-        <div>
-            <h1 className="text-white">Heading</h1>
-        </div>
+    return (
+        <Comp >{children}</Comp>
     );
-}
+} 
