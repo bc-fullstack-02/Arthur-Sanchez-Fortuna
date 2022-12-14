@@ -5,6 +5,9 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { SingUp } from "./Pages/SingUp";
 
+// Importar Home aula 7
+import { Home } from "./Pages/Home";
+
 //  essa função vai criar a rota e receber 1 array de objetos de 2 parametros
 const router = createBrowserRouter([
   {
@@ -15,6 +18,10 @@ const router = createBrowserRouter([
   {
     path: "/singup",
     element: <SingUp/>,
+  },
+  {
+    path: "/home",
+    element: <Home/>,
   },
 ]);
 

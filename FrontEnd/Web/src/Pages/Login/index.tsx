@@ -1,6 +1,9 @@
 // Aula 7 min 18,, npm install jwt-decode
-import jwt_decode from 'jwt-decode';
 //  biblioteca pequena que é só pra pegar o token e pegaroq tiver dentro dele
+import jwt_decode from 'jwt-decode';
+
+// Importar rota aula 7
+import { redirect } from 'react-router-dom';
 
 // Explicação das Rotas Aula 6 min 28 até 35:25, npm instal react-router-dom
 import { AuthForm } from "../../Components/AuthForm";
@@ -25,6 +28,8 @@ export function Login() {
             localStorage.setItem("profile", decodeToken.profile);
             localStorage.setItem("user", decodeToken.user);
             localStorage.setItem("accessToken", data.accessToken);
+
+            return redirect("/home");
         }
         catch (err) {
             console.log(err);
