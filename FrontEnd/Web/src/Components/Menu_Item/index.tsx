@@ -13,9 +13,9 @@ export function MenuItem(props: MenuItemProps){
     return ( 
         props.children,
         <li className="mt-5">
-            <div className="flex items-center px-4 rounded-full hover:bg-sky-400 pl-2">
+            <div className="flex items-center px-4 rounded-full hover:bg-sky-400 ml-2">
                 {/* ele da um erro de não aceitar o children */}
-                <Slot className="text-slate-50"> {props.children} </Slot>
+                {/* <Slot className="text-slate-50"> {props.children} </Slot> */}
                 <Text className="font-extrabold ml-4"> {props.menuTitle} </Text>
             </div>
         </li>

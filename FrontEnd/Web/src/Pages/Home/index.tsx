@@ -2,6 +2,9 @@
 import Logo_Menu from "../../Assets/Logo_Menu.svg";
 import { Text } from "../../Components/Text";
 import { Menu } from "../../Components/Menu";
+import * as Dialog from "@radix-ui/react-dialog";
+import { CreatePostButton } from "../../Components/CreatePostButton";
+import { CreatePostDialog } from "../../Components/CreatePostDialog";
 
 export function Home() {
     return( 
@@ -14,6 +17,11 @@ export function Home() {
                 </div>
                 {/* Componente Menu */}
                 <Menu/>
+                <Dialog.Root>
+                    <CreatePostButton />
+
+                    <CreatePostDialog />
+                </Dialog.Root>
             </div>
             <div className="basis-5/6"></div>
         </div>
