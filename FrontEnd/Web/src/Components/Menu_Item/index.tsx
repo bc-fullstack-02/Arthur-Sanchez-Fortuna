@@ -11,7 +11,6 @@ interface MenuItemProps {
 
 export function MenuItem(props: MenuItemProps){
     return ( 
-        props.children,
         <li className="mt-5">
             <div className="flex items-center px-4 rounded-full hover:bg-sky-400 ml-2">
                 {/* ele da um erro de não aceitar o children */}
