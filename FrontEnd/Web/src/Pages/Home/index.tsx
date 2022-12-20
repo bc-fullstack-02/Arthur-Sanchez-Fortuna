@@ -5,8 +5,17 @@ import { Menu } from "../../Components/Menu";
 import * as Dialog from "@radix-ui/react-dialog";
 import { CreatePostButton } from "../../Components/CreatePostButton";
 import { CreatePostDialog } from "../../Components/CreatePostDialog";
+import { useState } from "react";
+import { Feed } from "../../Components/Feed";
 
 export function Home() {
+    // Aula 8 min 1H e 5
+    const [open,setOpen] = useState(false);
+
+    function closeDialog(){
+        setOpen(false);
+    };
+
     return( 
         <div className="w-screen h-screen flex">
             {/* Esplicacção tailwind, aula 7 min 51 */}
@@ -17,13 +26,19 @@ export function Home() {
                 </div>
                 {/* Componente Menu */}
                 <Menu/>
-                <Dialog.Root>
-                    <CreatePostButton />
+                {/* Estilo aula 8 min 1h e 22 */}
+                <div className="flex flex-col items-center">
+                    <Dialog.Root open={open} onOpenChange={setOpen}>
+                        <CreatePostButton />
 
-                    <CreatePostDialog />
-                </Dialog.Root>
+                        <CreatePostDialog closeDialog={closeDialog} />
+                    </Dialog.Root>
+                </div>
             </div>
-            <div className="basis-5/6"></div>
+            <div className="basis-5/6">
+                <Feed />
+            </div>
         </div>
         );
 }
+// Criação dos post aula 8 min 31 até 1h e 15

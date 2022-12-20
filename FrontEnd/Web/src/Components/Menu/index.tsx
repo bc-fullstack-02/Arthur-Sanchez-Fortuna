@@ -5,7 +5,7 @@ import { MenuItem } from "../Menu_Item";
 // Criar componente Menu, aula 7 min 1H
 export function Menu(){
     return(
-        <ul>
+        <ul className="pr-2">
             <MenuItem menuTitle="Pagina Inicial"> <House size={48} weight="fill" /> </MenuItem>
             <MenuItem menuTitle="Perfil"> <User size={48} weight="fill" /> </MenuItem>
             <MenuItem menuTitle="Amigos"> <UsersThree size={48} weight="fill" /> </MenuItem>
