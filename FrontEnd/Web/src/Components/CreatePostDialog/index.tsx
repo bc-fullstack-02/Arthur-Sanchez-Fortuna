@@ -9,14 +9,24 @@ interface CreatePostDialogProps {
     closeDialog: () => void;
 };
 
+// Arrumando os elements user e passowrd aula 9 min 13, tinha q f azer 2 interaces
+interface PostFormElements extends HTMLFormControlsCollection{
+    title: HTMLInputElement;
+    description: HTMLInputElement;
+};
+
+interface PostFormElements extends HTMLFormElement{
+    readonly elements: PostFormElements;
+};
+
 // criar handlesubmit min 40 aula 8
 export function CreatePostDialog({closeDialog}: CreatePostDialogProps){
     
     const token = localStorage.getItem("accesstoken");
     
-    async function handlesubmit(event: FormEvent){
+    async function handlesubmit(event: FormEvent<PostFormElements>){
         event.preventDefault();
-        const form = event.target as HTMLFormElement;
+        const form = event.currentTarget;
 
         const newPost = {
             title: form.elements.title.value, 

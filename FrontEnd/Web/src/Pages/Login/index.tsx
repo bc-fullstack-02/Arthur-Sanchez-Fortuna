@@ -6,7 +6,7 @@ import jwt_decode from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
 
 // Explicação das Rotas Aula 6 min 28 até 35:25, npm instal react-router-dom
-import { AuthForm } from "../../Components/AuthForm";
+import { AuthForm, Auth } from "../../Components/AuthForm";
 import api from "../../Services/api";
 
 interface UserToken {
@@ -20,13 +20,12 @@ export function Login() {
     const navegate = useNavigate();
 
 // aula 6 min 1h e 11 até 1h e 16
-    async function handleLogin(user:string, password: string) {
+// aula 9 min 28
+    async function handleLogin(auth: Auth) {
         // aula 7 min 22 até 28
         try {
-            const { data } = await api.post("/security/login", {
-                user,
-                password
-            });
+            const { data } = await api.post("/security/login", auth);
+
             const decodeToken = jwt_decode(data.accessToken) as UserToken;
             localStorage.setItem("profile", decodeToken.profile);
             localStorage.setItem("user", decodeToken.user);

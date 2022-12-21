@@ -19,21 +19,47 @@ import { FormEvent } from "react";
 interface AuthFormProps {
     formTitle: string;
     submitFormButtonText: string;
-    submitFormButtonAction: (user: string, password: string) => void;
+    submitFormButtonAction: (auth: Auth) => void;
     linkDescription: string;
     routeName: string;
+    showNameInput?: boolean;
 }
 
+// Arrumando os elements user e passowrd aula 9 min 7, tinha q f azer 2 interaces
+interface AuthFormElements extends HTMLFormControlsCollection{
+    user: HTMLInputElement;
+    name?: HTMLInputElement;
+    password: HTMLInputElement;
+}
+
+interface AuthFormElements extends HTMLFormElement{
+    readonly elements: AuthFormElements;
+}
+
+// aula 9 min 28
+export interface Auth {
+    user: string,
+    name?: string;
+    passord: string;
+};
+
 // De Login() se muda pra AutoForm(), e adicionar parametros
-export function AuthForm({formTitle, submitFormButtonText, linkDescription, routeName, submitFormButtonAction}: AuthFormProps) {
+export function AuthForm({formTitle, submitFormButtonText, linkDescription, routeName, submitFormButtonAction, showNameInput}: AuthFormProps) {
 // aula 6 min 1h e 20 até 1H e 25
-    function handleSubimit(event: FormEvent) {
+    function handleSubimit(event: FormEvent<AuthFormElements>) {
+        
         event.preventDefault();
-        const form = event.target as HTMLFormElement;
-        submitFormButtonAction(
-            form.elements.user.value, 
-            form.elements.password.value
-            );
+        // aki arruma na aula 9 min 8
+        const form = event.currentTarget
+        
+        // aula 9 miin 25
+        const auth = {
+            user: form.elements.user.value, 
+            name: form.elements.name?.value,
+            passord: form.elements.password.value
+        };
+        
+        submitFormButtonAction(auth);
     };
 
     return (
@@ -52,7 +78,24 @@ export function AuthForm({formTitle, submitFormButtonText, linkDescription, rout
 
             {/*Formulario: Login, Senha, e Button*/}
             {/* onsubimit aula 6 min 1H e 20 */}
-            <form onSubmit={(e) => handleSubimit(e)} className="mt-10 flex-col gap-4 items-stretch w-full max-w-sm">
+            {/* aki arruma na aula 9 min 10 */}
+            <form onSubmit = {handleSubimit} className="mt-10 flex-col gap-4 items-stretch w-full max-w-sm">
+            {/* aki na aula 9 min 22 ele cria a 3° linha para o cadastro */}
+            {/* Explicação aula 9 min 33 */}
+                 {/*Nome*/}
+                 {showNameInput &&(
+                 <label htmlFor="name" className="flex flex-col gap-2">
+                    <Text>Nome</Text>
+                    <TextInput.Root>
+                        {/* Icone */}
+                        <TextInput.Icon>
+                            <User/>
+                        </TextInput.Icon>
+                        {/* Input */}
+                        <TextInput.Input id="name" type="text" placeholder="Digite seu Nome de Usuário"/>
+                    </TextInput.Root>
+                </label>)}
+
                  {/*Login*/}
                 <label htmlFor="user" className="flex flex-col gap-2">
                     <Text>Login</Text>
