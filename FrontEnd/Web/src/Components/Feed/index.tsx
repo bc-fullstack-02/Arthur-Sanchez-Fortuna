@@ -7,6 +7,9 @@ import { UserCircle, Chat, Heart } from "phosphor-react";
 import { useEffect, useState } from "react";
 import api from "../../Services/api";
 
+// aula 10 min 1h e 30
+import { getAuthHeader } from "../../Services/auth";
+
 // Criar interface Post, aula 9 min 1h e 8
 interface Post {
     _id: string;
@@ -21,20 +24,16 @@ interface Post {
 
 
 export function Feed() {
+    // aula 10 min 1h e 30
+    const authHeader = getAuthHeader();
+
     // aula 9 min 45
     // explicação min 54 aula 9
-    const token = localStorage.getItem("accesstoken");
     const  user = localStorage.getItem("user");
     const profile = localStorage.getItem("profile")
     // explicação aula 9 min 1h e 13
     const [posts, setPosts] = useState<Post[]>([]);
-    // header pra facilicar
-    const authHeader = {
-        headers: {
-            Authorization: 'Bearer ${token}'
-        },
-    };
-
+    
     useEffect(() => {
         async function getPosts() {
           const response = await api.get ("/feed", authHeader);
@@ -60,7 +59,7 @@ export function Feed() {
     };
 
     return(
-        <div>
+        <div className="basis-5/6 overflow-y-auto scroll-smooth">
             <Heading className="border-b border-slate-400 mt-4">
                 <Text size="lg" className="font-extrabold ml-5">Pagina Inicial</Text>
 
@@ -98,8 +97,8 @@ export function Feed() {
                         </div>
                     </div>
             ))};
-
             </section>
         </div>
     );
+}
 };
