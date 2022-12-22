@@ -37,6 +37,7 @@ export function Profiles() {
     async function handleFollow(profileId:string){
         try {
             await api.post("/profiles/${profileId}/follow", null, authHeader);
+            changeButtonStatus(profileId, true);
         } catch (err) {
             console.error(err)
         };
@@ -45,10 +46,24 @@ export function Profiles() {
     async function handleUnfollow() {
         try {
             await api.post("/profiles/${profileId}/follow", null, authHeader);
+            changeButtonStatus(profileId, false);
         } catch (err) {
             console.error(err)
         };
     };
+
+    // aula 11, inicio, prof arrumo o erro e fez outra função
+    function changeButtonStatus(profileId:string, buttonDisable: boolean) {
+        setProfiles((profiles) => {
+            const newProfiles = profiles.map((profile) => {
+                if (profile.id === profile){
+                    profile.followButtonDisable = buttonDisable;
+                }
+                return profile;
+            });
+            return [...newProfiles];
+        })};
+
 
     return( 
         <div className="basis-5/6">

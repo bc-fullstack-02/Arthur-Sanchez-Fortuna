@@ -3,10 +3,13 @@ import { FormEvent } from "react";
 import { Button } from "../Button";
 import { TextInput } from "../Text_Input";
 import api from "../../Services/api";
+// aula 11, drop zone
+import { Dropzone } from "../Dropzone";
+import { useState } from "react";
 
 // Crinado interface dialog aula 8 min 1H e 3
 interface CreatePostDialogProps {
-    closeDialog: () => void;
+    postCreate: (post:Post) => void;
 };
 
 // Arrumando os elements user e passowrd aula 9 min 13, tinha q f azer 2 interaces
@@ -20,26 +23,31 @@ interface PostFormElements extends HTMLFormElement{
 };
 
 // criar handlesubmit min 40 aula 8
-export function CreatePostDialog({closeDialog}: CreatePostDialogProps){
-    
+export function CreatePostDialog({postCreate}: CreatePostDialogProps){
     const token = localStorage.getItem("accesstoken");
+    const [selectFieldURL, setselectFieldURL] = useState<File>();
     
     async function handlesubmit(event: FormEvent<PostFormElements>){
         event.preventDefault();
         const form = event.currentTarget;
 
-        const newPost = {
-            title: form.elements.title.value, 
-            description: form.elements.description.value};
+        // aula 11 min 52
+        const data = new FormData();
+        data.append('title', form.elements.title.value);
+        data.append('description', form.elements.description.value);
+        if (selectFile) {
+            data.append('file', selectFile);
+        }
 
         // Explicação min 52 até 59:35 aula 8
+        
         try {
-            await api.post("/post", newPost, {
+            const response = await api.post("/posts", data, {
             headers: {
                 Authorization: 'Bearer ${token}'
             },
         });
-          closeDialog();  
+            postCreate(response.data);  
         } catch (err) {
             console.error(err);
             alert("Erro ao Criar o Post");
@@ -68,6 +76,8 @@ export function CreatePostDialog({closeDialog}: CreatePostDialogProps){
                         <TextInput.Input 
                             id="description"
                             placeholder="Diga, o que está Pensando..."/>
+                            {/* aula 11 */}
+                            <Dropzone onFileUploded={setselectFieldURL}/>
                     </div>
                     {/* Fazendo o buttão de fechar e posta, min 31 aula 8 */}
                     <footer className="mt-6 flex justify-end gap-4">

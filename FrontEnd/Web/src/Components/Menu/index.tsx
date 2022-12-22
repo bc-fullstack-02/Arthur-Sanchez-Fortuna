@@ -11,13 +11,18 @@ import Logo_Menu from "../../Assets/Logo_Menu.svg";
 import * as Dialog from "@radix-ui/react-dialog";
 import { useState } from "react";
 
-// Criar componente Menu, aula 7 min 1H
+// criar interface menu, aula 11, min 1h e 25
+interface MenuProps {
+    newPostCreated: (post: Post) => void;
+};
 
-export function Menu(){
+// Criar componente Menu, aula 7 min 1H
+export function Menu(props: MenuProps){
 
     const [open, setOpen] = useState(false);
-    function closeDialog(){
+    function postCreate(post: Post){
         setOpen(false);
+        props.newPostCreated(post);
     };
 
     return(
@@ -38,7 +43,7 @@ export function Menu(){
                 <Dialog.Root open={open} onOpenChange={setOpen}>
                     <CreatePostButton />
 
-                    <CreatePostDialog closeDialog={closeDialog} />
+                    <CreatePostDialog postCreate={postCreate} />
                 </Dialog.Root>
             </div>
         </div>
