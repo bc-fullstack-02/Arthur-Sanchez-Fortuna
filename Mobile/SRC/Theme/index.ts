@@ -12,6 +12,8 @@ export const THEME = {
         CAPTION_400: "#A1A1AA",
         CAPTION_300: "#D4D4D8",
         INPUT: "#7C7C8A",
+        // aula 5 min 1h e 5
+        BUTTON: "#81D8F7"
     },
 // aula 2 min 1h e 10 
     FONT_SIZE: {

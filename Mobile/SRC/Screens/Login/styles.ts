@@ -19,4 +19,21 @@ export const styles = StyleSheet.create({
   text: {
     color: THEME.COLORS.TEXT,
   },
+// aula 5 min 52
+  containerPosition: {
+    alignContent: "center",
+  },
+// aula 5 min 57
+  button: {
+    minWidth: 240,
+    borderRadius: 12,
+  },
+// aula 5 min 1h e 13
+  link: {
+    color: THEME.COLORS.CAPTION_500,
+    fontSize: THEME.FONT_SIZE.MD,
+    textAlign: "center",
+    fontFamily: THEME.FONT_FAMILY.REGULAR,
+    textDecorationLine: "underline",
+  },
 });

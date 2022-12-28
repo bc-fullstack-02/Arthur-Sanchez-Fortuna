@@ -27,7 +27,7 @@ interface TextInputIconProps{
 };
 
 function TextInputIcon({children}: TextInputIconProps){
-  return(<> {children} </>);
+  return(<View> {children} </View>);
 };
 
 export const Input = {

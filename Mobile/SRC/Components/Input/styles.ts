@@ -10,14 +10,15 @@ export const styles = StyleSheet.create({
     // borderColor: "red",
     maxWidth: "100%",
     minWidth: 240,
-    borderRadius: 10,
+    borderRadius: 12,
     backgroundColor: THEME.COLORS.BACKGROUND_600,
-    padding: 8
+    padding: 12
   },
   input: {
-    marginStart: 8,
+    marginStart: 12,
+    flex: 1,
     color: THEME.COLORS.INPUT,
     fontFamily: THEME.FONT_FAMILY.REGULAR,
-
+    placeHolderTextColor: THEME.COLORS.INPUT,
   }
 });
