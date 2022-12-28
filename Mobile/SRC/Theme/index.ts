@@ -4,11 +4,14 @@ export const THEME = {
     COLORS: {
         BACKGROUND_900: "#121214",
         BACKGROUND_800: "#181818",
+        // ADD o 600 aula 4 min 2h e 2
+        BACKGROUND_600: "#202024",
         TEXT: "#FFFFFF",
         //aula 2 min 1h e 12
         CAPTION_500: "#71717A",
         CAPTION_400: "#A1A1AA",
         CAPTION_300: "#D4D4D8",
+        INPUT: "#7C7C8A",
     },
 // aula 2 min 1h e 10 
     FONT_SIZE: {
