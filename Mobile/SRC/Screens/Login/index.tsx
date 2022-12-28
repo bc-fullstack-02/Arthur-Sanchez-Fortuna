@@ -12,7 +12,6 @@ import { Input } from '../../Components/Input';
 // importando user aula 4 min 1h e 53
 import { User } from 'phosphor-react-native';
 
-
 export function Login() {
   return (
     <View style={styles.container}>
