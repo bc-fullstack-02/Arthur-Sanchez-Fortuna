@@ -1,11 +1,4 @@
 const {Schema, model} = require('mongoose')
-/**
- * @typedef Profile
- * @property {string} _id
- * @property {string} name.required
- * @property {user} user.required - user
- * @property {Array.<Profile>} following - following profiles
- */
 const profileSchema = new Schema({
   name: {
     type: String,

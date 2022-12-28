@@ -1,8 +1,6 @@
 const Broker = require('rascal').BrokerAsPromised;
 const config = require("../config.json")
 
-
-
 module.exports = {
     pub: (async (req, res, next) =>{
         try{

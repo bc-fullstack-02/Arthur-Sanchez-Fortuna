@@ -18,27 +18,12 @@ router
     .then(() => next())
     .catch(err => next(err))
   )
-/**
- * This function get comments of a post
- * @route GET /posts/{postId}/comments
- * @param {string} postId.path.required - user's id.
- * @group Comment - api
- * @returns {Array.<Comments>} 200 - An array of posts
- * @returns {Error} default - Unexpected error
- * @security JWT
- */
+
  .get((req, res, next) => Promise.resolve()
     .then(() => Comment.find({post: res.locals.post.id}).populate('profile'))
     .then((data) => res.status(200).json(data))
     .catch(err => next(err)))
-/**
- * This function post a comment into a post
- * @route POST /posts/{postId}/comments
- * @param {string} postId.path.required - post id.
- * @param {Comment.model} comment.body.required - the new point
- * @group Comment - api
- * @security JWT
- */
+
   .post((req, res, next) => Promise.resolve()
     .then(() => new Comment(Object.assign(req.body, {post: res.locals.post.id, profile: req.user.profile._id})).save())
     .then((comment) => Post.findById(comment.post)

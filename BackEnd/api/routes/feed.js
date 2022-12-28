@@ -9,15 +9,7 @@ router
     .then(() => next())
     .catch(err => next(err))
   )
-/**
- * This function get posts
- * @route GET /feed?page={page}
- * @param {integer} page.query - current page.
- * @group Feed - api
- * @returns {Array.<Post>} 200 - An array of posts
- * @returns {Error} default - unexpected error
- * @security JWT
- */
+
   .get((req, res, next) => Promise.resolve()
     .then(() => Profile.findById(req.user.profile.id))
     .then((profile) => Post

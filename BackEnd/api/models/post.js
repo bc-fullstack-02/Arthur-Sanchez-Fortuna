@@ -1,12 +1,4 @@
 const {Schema, model} = require('mongoose')
-/**
- * @typedef Post
- * @property {string} _id
- * @property {string} title.required - title
- * @property {string} description.required - description
- * @property {Profile} profile.required - profile
- * @property {Array.<Comment>} comments - comments
- */
 const postSchema = new Schema({
   title: {
     type: String,

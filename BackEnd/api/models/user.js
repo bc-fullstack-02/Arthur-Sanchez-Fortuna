@@ -1,11 +1,4 @@
 const {Schema, model} = require('mongoose')
-/**
- * @typedef User
- * @property {string}  _id
- * @property {string} user.required
- * @property {string} password.required
- * @property {Profile} profile - profile of user
- */
 const postSchema = new Schema({
   user: {
     type: String,

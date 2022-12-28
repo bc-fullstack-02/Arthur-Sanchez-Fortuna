@@ -19,27 +19,12 @@ router
     .catch(err => next(err))
   )
   .route('/me')
-/**
- * This function get my users
- * @route GET /users/me
- * @group User - api
- * @returns {User} 200 - my user
- * @returns {Error} default - Unexpected error
- * @security JWT
- */
+
   .get((req, res, next) => Promise.resolve()
     .then(() => User.findById(req.user.id).populate({path: 'profile'}))
     .then((data) => data ? res.status(200).json(data) : next(createError(404)))
     .catch(err => next(err)))
-/**
- * This function update my user
- * @route PUT /users/me
- * @group User - api
- * @param {User.model} post.body.required - the new user
- * @returns {User} 200 - my user
- * @returns {Error} default - Unexpected error
- * @security JWT
- */
+
   .put((req, res, next) => Promise.resolve()
     .then(() => bcrypt.hash(req.body.password, 10))
     .then((passHashed) => {
@@ -50,14 +35,7 @@ router
     .then(() => User.findByIdAndUpdate(req.user.id, req.body, {runValidators: true}))
     .then((data) => res.status(203).json(data))
     .catch(err => next(err)))
-/**
- * This function update my user
- * @route DELETE /users/me
- * @group User - api
- * @returns {User} 200 - my user
- * @returns {Error} default - Unexpected error
- * @security JWT
- */
+
   .delete((req, res, next) => Promise.resolve()
     .then(() => User.deleteOne({_id: req.user.id}))
     .then((data) => res.status(203).json(data))

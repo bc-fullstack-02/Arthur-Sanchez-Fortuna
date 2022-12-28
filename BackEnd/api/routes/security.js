@@ -13,12 +13,7 @@ router
     .catch(err => next(err))
   )
   .route('/login')
-  /**
-   * This function creates a user
-   * @route POST /security/login
-   * @param {Login.model} post.body.required - the new user
-   * @group Security - api
-   */
+  
   .post((req, res, next) => Promise.resolve()
     .then(() => User.findOne({user: req.body.user}))
     .then((user) => user ? bcrypt.compare(req.body.password, user.password).then(passHashed => [user, passHashed]) : next(createError(404)))
@@ -33,12 +28,7 @@ router
     .then(() => next())
     .catch(err => next(err))
   )
-  /**
-   * This function creates a user
-   * @route POST /security/register
-   * @param {Registry.model} post.body.required - the new user
-   * @group Security - api
-   */
+  
   .post((req, res, next) => Promise.resolve()
     .then(() => bcrypt.hash(req.body.password, 10))
     .then((passHashed) => new User({...req.body, password: passHashed}).save())
