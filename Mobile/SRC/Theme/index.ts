@@ -13,7 +13,11 @@ export const THEME = {
         CAPTION_300: "#D4D4D8",
         INPUT: "#7C7C8A",
         // aula 5 min 1h e 5
-        BUTTON: "#81D8F7"
+        BUTTON: "#81D8F7",
+        // aula 7 min 45
+        ERROR: "red",
+        // aula 7 min 1h e 29
+        BORDER: "#7C7C8A",
     },
 // aula 2 min 1h e 10 
     FONT_SIZE: {

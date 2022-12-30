@@ -9,6 +9,8 @@ import { Spacer } from '../Spacer';
 import { styles } from './styles';
 import { Button } from '../Button';
 import logo from "../../../assets/images/logo.png";
+//  aula 7 min 1h e 14
+import {Auth} from "../../@Types/auth";
 
 export interface Auth {
     user: string,
@@ -65,7 +67,8 @@ export function AuthForm({formTitle, submitFormButtonText, submitFormButtonActio
         </Input.Root>
 
         <Spacer/>
-        <Button onPress={() => submitFormButtonAction({user, password})} title={submitFormButtonText}/>
+        <Button title={submitFormButtonText} 
+        onPress={() => submitFormButtonAction({user, password})}/>
         </KeyboardAvoidingView>
     );
 }

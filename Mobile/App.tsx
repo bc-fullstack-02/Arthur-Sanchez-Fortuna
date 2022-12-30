@@ -6,7 +6,7 @@ import { useFonts, Inter_400Regular, Inter_600SemiBold, Inter_700Bold, Inter_900
 // importar Loading aula 2 min 1h e 30
 import { Loading } from './SRC/Components/Loading';
 // aula 6 min 26, min 46
-import {NavegationContainer} from "react-navegation/native";
+import {NavigationContainer} from "react-navegation/native";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { THEME } from './SRC/Theme';
 import { SingUp } from './SRC/Screens/SingUp';
@@ -21,13 +21,30 @@ import {
   Provider as AuthProvider,
   Context as AuthContext,
 } from './SRC/Context/AuthContext';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
+import { DefaultTheme } from '@react-navigation/native';
+// Inportando phosporreact aula 7 min 14
+import {House, User, UsersThree} from "phosphor-react-native"
 
+// aula 7 min 4, SLA quando isso foi feito na aula 6 
+const MyTheme = {
+  ...DefaultTheme,
+  dark: true,
+  colors: {
+    ...DefaultTheme.colors,
+    background: THEME.COLORS.BACKGROUND_900,
+  },
+  statusbar: "dark",
+  headersShow: false,
+  title: false,
+};
 
 function App() {
-// aula 6 min 1h e 50
-  const {token} = useContext(AuthContext);
-
+// aula 6 min 1h e 50, aula 7 min 1h e 7
+  const {token, tryLocalLogin, isLoading} = useContext(AuthContext);
+  useEffect(() => {
+    tryLocalLogin && tryLocalLogin();
+  }, []);
 // isso aki é pra retornar um booleano pra retornar pra useFonts, ou seja, quando td carrego ela retorna 1 objeto, é oq diz o roteiro 
   const fontsLoaded = useFonts({Inter_400Regular, Inter_600SemiBold, Inter_700Bold, Inter_900Black});
   // aula 6 min 29
@@ -38,23 +55,44 @@ function App() {
   return (
     <SafeAreaProvider>
       {fontsLoaded ? (
-        <NavegationContainer>        
-          {{! token ? (
-            <Stack.Navegator
-            screenOptions={{ 
-              headersShow: false, 
-              contentStyle: {backgroundColor: THEME.COLORS.BACKGROUND_900, flex: 1}, statusBarStyle: "dark"}}>
-            <Stack.Screen name='Login' component={Login}/>
-            <Stack.Screen name='SingUp' component={SingUp}/>
-          </Stack.Navegator>):
-        (
-          <Tab.Navigator>
+        <NavigationContainer theme={MyTheme}>        
+          {! token ? (
+            <Stack.Navigator
+              screenOptions={{ 
+                headersShow: false, 
+                statusBarStyle: "dark", }}>
+          
+              <Stack.Screen name='Login' component={Login}/>
+              <Stack.Screen name='SingUp' component={SingUp}/>
+            </Stack.Navigator>
+            
+            ):(
+
+          <Tab.Navigator
+          // aula 7 min 10
+            screenOptions={({route}) => ({
+              tabBarIcon: ({color, size}) => {
+                switch(route.name){
+                   // aula 7 min 15
+                  case "Home": return <House size={size} color={color}/>;
+                  case "Friends": return <UsersThree size={size} color={color}/>;
+                  case "Profile": return <User size={size} color={color}/>;
+                }
+              },
+              tabBarStyle: {backgroundColor: THEME.COLORS.BACKGROUND_800},
+              tabBarShowLabel: false,
+              headerShown: false,
+              
+            })}>
+
             <Tab.Screen name='Home' component={Home}/>
             <Tab.Screen name='Friends' component={Friends}/>
             <Tab.Screen name='Profile' component={Profile}/>
           </Tab.Navigator>
-        ))}}
-        </NavegationContainer>
+
+        )}
+
+        </NavigationContainer>
       ) : ( <Loading/>) }
     </SafeAreaProvider>
   );

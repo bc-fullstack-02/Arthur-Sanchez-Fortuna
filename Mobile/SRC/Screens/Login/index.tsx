@@ -7,6 +7,7 @@ import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 // aula 6 min 1h e 55
 import React, {useContext} from 'react';
 import {Context as AuthContext} from "../../Context/AuthContext";
+import { Spacer } from '../../Components/Spacer';
 
 // aula 6 min 58
 interface LoginProps {
@@ -14,7 +15,7 @@ interface LoginProps {
 };
 
 export function Login({navigation}: LoginProps) {
-  const {login} = useContext(AuthContext);
+  const {login, errorMensage} = useContext(AuthContext);
 // aula 6 min 58
   function handleRegisterClick(){
     navigation.navigate("SingUp")
@@ -30,6 +31,12 @@ export function Login({navigation}: LoginProps) {
     <TouchableOpacity onPress={handleRegisterClick}>
       <Text style={styles.link}>Não Tem Conta? Crie uma Aqui!</Text>
     </TouchableOpacity>
+    {/* aula 7 min 45 */}
+    {errorMensage && (
+      <Spacer>
+        <Text style={styles.errorMessage}>{errorMensage}</Text>
+      </Spacer>
+    )}
     </>
   );
 }
