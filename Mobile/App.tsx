@@ -25,6 +25,10 @@ import { useContext, useEffect } from 'react';
 import { DefaultTheme } from '@react-navigation/native';
 // Inportando phosporreact aula 7 min 14
 import {House, User, UsersThree} from "phosphor-react-native"
+// importando Contexto as 5 da mamnha, aula 8 min 21
+import { Provider as PostProvider} from './SRC/Context/PostContext';
+import { HomeNavegationScreen } from './SRC/Screens/HomeNavegationScreen';
+import { navigation } from './RootNavigation';
 
 // aula 7 min 4, SLA quando isso foi feito na aula 6 
 const MyTheme = {
@@ -55,7 +59,7 @@ function App() {
   return (
     <SafeAreaProvider>
       {fontsLoaded ? (
-        <NavigationContainer theme={MyTheme}>        
+        <NavigationContainer theme={MyTheme} ref={navigationRef}>        
           {! token ? (
             <Stack.Navigator
               screenOptions={{ 
@@ -74,7 +78,7 @@ function App() {
               tabBarIcon: ({color, size}) => {
                 switch(route.name){
                    // aula 7 min 15
-                  case "Home": return <House size={size} color={color}/>;
+                  case "HomeNavegation": return <House size={size} color={color}/>;
                   case "Friends": return <UsersThree size={size} color={color}/>;
                   case "Profile": return <User size={size} color={color}/>;
                 }
@@ -85,7 +89,7 @@ function App() {
               
             })}>
 
-            <Tab.Screen name='Home' component={Home}/>
+            <Tab.Screen name='HomeNavegation' component={HomeNavegationScreen}/>
             <Tab.Screen name='Friends' component={Friends}/>
             <Tab.Screen name='Profile' component={Profile}/>
           </Tab.Navigator>
@@ -102,7 +106,9 @@ function App() {
 export default () => {
   return(
     <AuthProvider>
-      <App/>
+      <PostProvider>
+        <App/>
+      </PostProvider>
     </AuthProvider>
   );
 };

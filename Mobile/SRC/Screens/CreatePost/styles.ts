@@ -1,7 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { THEME } from '../../Theme';
 
-// aula 7 min 1h e 22
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -19,7 +18,4 @@ export const styles = StyleSheet.create({
     borderBottomColor: THEME.COLORS.BORDER,
     borderBottomWidth: 1,
   },
-  content: {
-    flex:1
-  }
 });
